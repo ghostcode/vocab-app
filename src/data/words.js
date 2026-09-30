@@ -121,7 +121,7 @@ export const wordData = {
     { word: 'intervene', phonetic: '/ˌɪntərˈviːn/', meaning: 'v. 干预', example: 'The teacher intervened in the fight.', exampleCn: '老师介入了这场争执。' },
     { word: 'involve', phonetic: '/ɪnˈvɑːlv/', meaning: 'v. 涉及，包含', example: 'The job involves travel.', exampleCn: '这份工作涉及出差。' },
     { word: 'isolate', phonetic: '/ˈaɪsəleɪt/', meaning: 'v. 隔离', example: 'Sick patients were isolated.', exampleCn: '病患被隔离了。' },
-    { word: 'justify', phonetic: '/ˈdʒʌstɪfaɪ/', meaning: 'v. 证明…正当', example: 'He justified his decision.', exampleCn: '他为自己的决定作了辩护。' },
+    { word: 'justify', phonetic: '/ˈdʒʌstɪfaɪ/', meaning: 'v. 证明…正当', example: 'He must justify his decision.', exampleCn: '他必须为自己的决定辩护。' },
     { word: 'launch', phonetic: '/lɔːntʃ/', meaning: 'v. 发起，推出', example: 'They launched a new product.', exampleCn: '他们推出了一款新产品。' },
     { word: 'maintain', phonetic: '/meɪnˈteɪn/', meaning: 'v. 维持', example: 'We must maintain quality.', exampleCn: '我们必须保持质量。' },
     { word: 'manipulate', phonetic: '/məˈnɪpjuleɪt/', meaning: 'v. 操纵', example: 'He manipulated the data.', exampleCn: '他篡改了数据。' },
@@ -131,7 +131,7 @@ export const wordData = {
     { word: 'objective', phonetic: '/əbˈdʒektɪv/', meaning: 'adj. 客观的 n. 目标', example: 'We need an objective view.', exampleCn: '我们需要客观的看法。' },
     { word: 'obtain', phonetic: '/əbˈteɪn/', meaning: 'v. 获得', example: 'She obtained a degree.', exampleCn: '她获得了学位。' },
     { word: 'obvious', phonetic: '/ˈɑːbviəs/', meaning: 'adj. 明显的', example: 'The answer is obvious.', exampleCn: '答案很明显。' },
-    { word: 'occupy', phonetic: '/ˈɑːkjupaɪ/', meaning: 'v. 占据', example: 'The sofa occupies much space.', exampleCn: '沙发占了很大空间。' },
+    { word: 'occupy', phonetic: '/ˈɑːkjupaɪ/', meaning: 'v. 占据', example: 'The sofa will occupy much space.', exampleCn: '沙发会占很大空间。' },
     { word: 'occur', phonetic: '/əˈkɜːr/', meaning: 'v. 发生', example: 'An accident occurred.', exampleCn: '发生了一起事故。' },
     { word: 'ongoing', phonetic: '/ˈɑːnɡoʊɪŋ/', meaning: 'adj. 持续的', example: 'The project is ongoing.', exampleCn: '项目正在进行中。' },
     { word: 'opponent', phonetic: '/əˈpoʊnənt/', meaning: 'n. 对手', example: 'He defeated his opponent.', exampleCn: '他击败了对手。' },
@@ -333,7 +333,7 @@ export const wordData = {
     { word: 'protocol', phonetic: '/ˈproʊtəkɔːl/', meaning: 'n. 协议，规程', example: 'Follow the safety protocol.', exampleCn: '遵守安全协议。' },
     { word: 'provocative', phonetic: '/prəˈvɑːkətɪv/', meaning: 'adj. 挑衅的', example: 'He made a provocative remark.', exampleCn: '他发表了挑衅性言论。' },
     { word: 'prudent', phonetic: '/ˈpruːdnt/', meaning: 'adj. 谨慎的', example: 'A prudent choice is wise.', exampleCn: '谨慎的选择是明智的。' },
-    { word: 'qualify', phonetic: '/ˈkwɑːlɪfaɪ/', meaning: 'v. 使合格', example: 'He qualified for the job.', exampleCn: '他有资格做这份工作。' },
+    { word: 'qualify', phonetic: '/ˈkwɑːlɪfaɪ/', meaning: 'v. 使合格', example: 'He must qualify for the job.', exampleCn: '他必须取得做这份工作的资格。' },
     { word: 'radical', phonetic: '/ˈrædɪkl/', meaning: 'adj. 激进的', example: 'The proposal is too radical.', exampleCn: '这个提议太激进。' },
     { word: 'random', phonetic: '/ˈrændəm/', meaning: 'adj. 随机的', example: 'Pick a random number.', exampleCn: '选一个随机数。' },
     { word: 'rationale', phonetic: '/ˌræʃəˈnæl/', meaning: 'n. 理由，依据', example: 'The rationale is quite clear.', exampleCn: '理由很清楚。' },
@@ -387,7 +387,7 @@ export const wordData = {
     { word: 'approximate', phonetic: '/əˈprɑːksɪmət/', meaning: 'adj. 近似的', example: 'The cost is only approximate.', exampleCn: '成本只是近似值。' },
     { word: 'area', phonetic: '/ˈeriə/', meaning: 'n. 区域，领域', example: 'This is a rural area.', exampleCn: '这是农村地区。' },
     { word: 'argue', phonetic: '/ˈɑːrɡjuː/', meaning: 'v. 争论，主张', example: 'They argued about the plan.', exampleCn: '他们为计划争论。' },
-    { word: 'arise', phonetic: '/əˈraɪz/', meaning: 'v. 出现，升起', example: 'A new problem arose.', exampleCn: '出现了一个新问题。' },
+    { word: 'arise', phonetic: '/əˈraɪz/', meaning: 'v. 出现，升起', example: 'New problems arise every day.', exampleCn: '每天都会出现新问题。' },
     { word: 'aspect', phonetic: '/ˈæspekt/', meaning: 'n. 方面', example: 'Consider every aspect.', exampleCn: '考虑每个方面。' },
     { word: 'assign', phonetic: '/əˈsaɪn/', meaning: 'v. 分配，指派', example: 'The teacher assigned homework.', exampleCn: '老师布置了家庭作业。' },
     { word: 'assist', phonetic: '/əˈsɪst/', meaning: 'v. 协助', example: 'She assisted the manager.', exampleCn: '她协助了经理。' },
@@ -553,6 +553,6 @@ export const wordData = {
     { word: 'default', phonetic: '/dɪˈfɔːlt/', meaning: 'n./v. 违约', example: 'The borrower defaulted.', exampleCn: '借款人违约了。' },
     { word: 'insolvent', phonetic: '/ɪnˈsɑːlvənt/', meaning: 'adj. 破产的', example: 'The firm is insolvent.', exampleCn: '公司破产了。' },
     { word: 'liquidate', phonetic: '/ˈlɪkwɪdeɪt/', meaning: 'v. 清算', example: 'They liquidated the assets.', exampleCn: '他们清算了资产。' },
-    { word: 'underwrite', phonetic: '/ˈʌndərraɪt/', meaning: 'v. 承销', example: 'The bank underwrote the deal.', exampleCn: '银行承销了这笔交易。' }
+    { word: 'underwrite', phonetic: '/ˈʌndərraɪt/', meaning: 'v. 承销', example: 'The bank will underwrite the deal.', exampleCn: '银行将承销这笔交易。' }
   ]
 }

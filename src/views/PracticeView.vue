@@ -58,8 +58,17 @@ const current = computed(() => queue[currentIndex.value] || null)
 
 const blankParts = computed(() => {
   if (!current.value) return []
-  const re = new RegExp('\\b' + current.value.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i')
+  // 支持词形变化（negotiate→negotiated）也能挖空：匹配词干 + 后续小写字母
+  const re = new RegExp('\\b' + current.value.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[a-z]*\\b', 'i')
   return current.value.example.split(re)
+})
+
+// 例句中实际被挖掉的词形（如 negotiated），作答时同样计为正确，更宽容
+const exampleToken = computed(() => {
+  if (!current.value) return ''
+  const re = new RegExp('\\b' + current.value.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '[a-z]*\\b', 'i')
+  const m = current.value.example.match(re)
+  return m ? m[0] : ''
 })
 
 function normalize(s) {
@@ -73,7 +82,10 @@ function normalize(s) {
 function submit() {
   if (!current.value || status.value !== 'idle') return
   if (!userInput.value.trim()) return
-  const ok = normalize(userInput.value) === normalize(current.value.word)
+  const guess = normalize(userInput.value)
+  const ok =
+    guess === normalize(current.value.word) ||
+    (exampleToken.value && guess === normalize(exampleToken.value))
   answered.value += 1
   status.value = ok ? 'correct' : 'wrong'
   if (ok) correctCount.value += 1
