@@ -8,7 +8,8 @@ const theme = {
   pink: { grad: 'linear-gradient(135deg,#ffd1dc,#ffb3c8)', deep: '#ff85a1', soft: '#fff0f5' },
   mint: { grad: 'linear-gradient(135deg,#c7f0db,#9fe8c6)', deep: '#5ec9a0', soft: '#eafaf2' },
   lavender: { grad: 'linear-gradient(135deg,#e3d4ff,#c9b3ff)', deep: '#9b7ede', soft: '#f4eeff' },
-  lemon: { grad: 'linear-gradient(135deg,#fff3bf,#ffe69c)', deep: '#f0b429', soft: '#fffaf0' }
+  lemon: { grad: 'linear-gradient(135deg,#fff3bf,#ffe69c)', deep: '#f0b429', soft: '#fffaf0' },
+  peach: { grad: 'linear-gradient(135deg,#ffdcc4,#ffb589)', deep: '#ff9b6a', soft: '#fff1ea' }
 }
 
 function cardStyle(c) {

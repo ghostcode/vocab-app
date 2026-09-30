@@ -17,7 +17,8 @@ const theme = {
   pink: { deep: '#ff85a1', soft: '#fff0f5', grad: 'linear-gradient(135deg,#ffd1dc,#ffb3c8)' },
   mint: { deep: '#5ec9a0', soft: '#eafaf2', grad: 'linear-gradient(135deg,#c7f0db,#9fe8c6)' },
   lavender: { deep: '#9b7ede', soft: '#f4eeff', grad: 'linear-gradient(135deg,#e3d4ff,#c9b3ff)' },
-  lemon: { deep: '#f0b429', soft: '#fffaf0', grad: 'linear-gradient(135deg,#fff3bf,#ffe69c)' }
+  lemon: { deep: '#f0b429', soft: '#fffaf0', grad: 'linear-gradient(135deg,#fff3bf,#ffe69c)' },
+  peach: { deep: '#ff9b6a', soft: '#fff1ea', grad: 'linear-gradient(135deg,#ffdcc4,#ffb589)' }
 }
 const t = computed(() => theme[category.value?.color] || theme.pink)
 
