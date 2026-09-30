@@ -9,10 +9,10 @@ const router = useRouter()
 const store = useVocabStore()
 const { speak } = useSpeak()
 
-const id = route.params.id
-const focusWord = route.query.word // 从词库页点单词带入，首次进入优先展示
-const category = computed(() => store.getCategory(id))
-const allWords = computed(() => store.getWords(id))
+const id = computed(() => route.params.id)
+const focusWord = computed(() => route.query.word) // 从词库页点单词带入，首次进入优先展示
+const category = computed(() => store.getCategory(id.value))
+const allWords = computed(() => store.getWords(id.value))
 
 const theme = {
   pink: { deep: '#ff85a1', soft: '#fff0f5', grad: 'linear-gradient(135deg,#ffd1dc,#ffb3c8)' },
@@ -40,12 +40,12 @@ function shuffle(arr) {
 }
 
 function buildQueue(focus = false) {
-  const unlearned = allWords.value.filter((w) => !store.progress[id]?.[w.word]?.learned)
+  const unlearned = allWords.value.filter((w) => !store.progress[id.value]?.[w.word]?.learned)
   let base = shuffle(unlearned.length ? unlearned : allWords.value)
   // 从词库页点单词进入时，把该词提到首位
-  if (focus && focusWord && allWords.value.some((w) => w.word === focusWord)) {
-    const fw = allWords.value.find((w) => w.word === focusWord)
-    base = [fw, ...base.filter((w) => w.word !== focusWord)]
+  if (focus && focusWord.value && allWords.value.some((w) => w.word === focusWord.value)) {
+    const fw = allWords.value.find((w) => w.word === focusWord.value)
+    base = [fw, ...base.filter((w) => w.word !== focusWord.value)]
   }
   queue = base
   currentIndex.value = 0
@@ -67,7 +67,7 @@ function flip() {
 
 function mark(known) {
   if (!current.value) return
-  store.recordAnswer(id, current.value.word, known)
+  store.recordAnswer(id.value, current.value.word, known)
   if (known) knownCount.value += 1
   if (currentIndex.value + 1 >= total.value) {
     finished.value = true
@@ -81,7 +81,7 @@ function restart() {
   buildQueue(false)
 }
 function switchMode() {
-  router.push(`/practice/${id}/word`)
+  router.push(`/practice/${id.value}/word`)
 }
 
 onMounted(() => buildQueue(true))

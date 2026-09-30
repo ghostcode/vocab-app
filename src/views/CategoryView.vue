@@ -9,9 +9,9 @@ const router = useRouter()
 const store = useVocabStore()
 const { speak } = useSpeak()
 
-const id = route.params.id
-const category = computed(() => store.getCategory(id))
-const words = computed(() => store.getWords(id))
+const id = computed(() => route.params.id)
+const category = computed(() => store.getCategory(id.value))
+const words = computed(() => store.getWords(id.value))
 
 const theme = {
   pink: { deep: '#ff85a1', soft: '#fff0f5', grad: 'linear-gradient(135deg,#ffd1dc,#ffb3c8)' },
@@ -23,16 +23,16 @@ const theme = {
 const t = computed(() => theme[category.value?.color] || theme.pink)
 
 function startPractice(mode) {
-  router.push(`/practice/${id}/${mode}`)
+  router.push(`/practice/${id.value}/${mode}`)
 }
 
 function goStudy(word) {
   // 点击单词跳转到学习卡片，并把该词作为首个展示（query.word）
-  router.push({ path: `/study/${id}`, query: { word } })
+  router.push({ path: `/study/${id.value}`, query: { word } })
 }
 
 function learned(word) {
-  const rec = store.progress[id]?.[word.word]
+  const rec = store.progress[id.value]?.[word.word]
   return !!(rec && rec.learned)
 }
 </script>

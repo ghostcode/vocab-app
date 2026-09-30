@@ -9,10 +9,10 @@ const router = useRouter()
 const store = useVocabStore()
 const { speak } = useSpeak()
 
-const id = route.params.id
-const mode = route.params.mode // 'word' | 'sentence'
-const category = computed(() => store.getCategory(id))
-const allWords = computed(() => store.getWords(id))
+const id = computed(() => route.params.id)
+const mode = computed(() => route.params.mode) // 'word' | 'sentence'
+const category = computed(() => store.getCategory(id.value))
+const allWords = computed(() => store.getWords(id.value))
 
 const theme = {
   pink: { deep: '#ff85a1', soft: '#fff0f5', grad: 'linear-gradient(135deg,#ffd1dc,#ffb3c8)' },
@@ -43,7 +43,7 @@ function shuffle(arr) {
 
 function buildQueue() {
   // 优先抽取未掌握的单词，全部掌握则打乱全部
-  const unlearned = allWords.value.filter((w) => !store.progress[id]?.[w.word]?.learned)
+  const unlearned = allWords.value.filter((w) => !store.progress[id.value]?.[w.word]?.learned)
   queue = shuffle(unlearned.length ? unlearned : allWords.value)
   currentIndex.value = 0
   userInput.value = ''
@@ -89,14 +89,14 @@ function submit() {
   answered.value += 1
   status.value = ok ? 'correct' : 'wrong'
   if (ok) correctCount.value += 1
-  store.recordAnswer(id, current.value.word, ok)
+  store.recordAnswer(id.value, current.value.word, ok)
 }
 
 function skip() {
   if (!current.value || status.value !== 'idle') return
   answered.value += 1
   status.value = 'wrong'
-  store.recordAnswer(id, current.value.word, false)
+  store.recordAnswer(id.value, current.value.word, false)
 }
 
 function next() {
@@ -115,7 +115,7 @@ function restart() {
 }
 
 function switchMode() {
-  router.push(`/practice/${id}/${mode === 'word' ? 'sentence' : 'word'}`)
+  router.push(`/practice/${id.value}/${mode.value === 'word' ? 'sentence' : 'word'}`)
 }
 
 const percent = computed(() =>
