@@ -10,6 +10,7 @@ const store = useVocabStore()
 const { speak } = useSpeak()
 
 const id = route.params.id
+const focusWord = route.query.word // 从词库页点单词带入，首次进入优先展示
 const category = computed(() => store.getCategory(id))
 const allWords = computed(() => store.getWords(id))
 
@@ -38,9 +39,15 @@ function shuffle(arr) {
   return a
 }
 
-function buildQueue() {
+function buildQueue(focus = false) {
   const unlearned = allWords.value.filter((w) => !store.progress[id]?.[w.word]?.learned)
-  queue = shuffle(unlearned.length ? unlearned : allWords.value)
+  let base = shuffle(unlearned.length ? unlearned : allWords.value)
+  // 从词库页点单词进入时，把该词提到首位
+  if (focus && focusWord && allWords.value.some((w) => w.word === focusWord)) {
+    const fw = allWords.value.find((w) => w.word === focusWord)
+    base = [fw, ...base.filter((w) => w.word !== focusWord)]
+  }
+  queue = base
   currentIndex.value = 0
   flipped.value = false
   finished.value = false
@@ -71,13 +78,13 @@ function mark(known) {
 }
 
 function restart() {
-  buildQueue()
+  buildQueue(false)
 }
 function switchMode() {
   router.push(`/practice/${id}/word`)
 }
 
-onMounted(buildQueue)
+onMounted(() => buildQueue(true))
 </script>
 
 <template>

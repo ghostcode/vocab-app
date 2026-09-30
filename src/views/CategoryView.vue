@@ -26,6 +26,11 @@ function startPractice(mode) {
   router.push(`/practice/${id}/${mode}`)
 }
 
+function goStudy(word) {
+  // 点击单词跳转到学习卡片，并把该词作为首个展示（query.word）
+  router.push({ path: `/study/${id}`, query: { word } })
+}
+
 function learned(word) {
   const rec = store.progress[id]?.[word.word]
   return !!(rec && rec.learned)
@@ -58,11 +63,15 @@ function learned(word) {
         class="word-item pop-in"
         :class="{ done: learned(w) }"
         :style="{ '--soft': t.soft, '--deep': t.deep }"
+        @click="goStudy(w.word)"
+        role="button"
+        tabindex="0"
+        @keyup.enter="goStudy(w.word)"
       >
         <div class="wi-left">
           <div class="wi-word-row">
             <span class="wi-word">{{ w.word }}</span>
-            <button class="mini-speak" @click="speak(w.word)" title="听发音">🔊</button>
+            <button class="mini-speak" @click.stop="speak(w.word)" title="听发音">🔊</button>
           </div>
           <div class="wi-phon">{{ w.phonetic }}</div>
           <div class="wi-mean">{{ w.meaning }}</div>
@@ -139,6 +148,10 @@ function learned(word) {
   justify-content: space-between;
   box-shadow: var(--shadow-soft);
   transition: transform 0.15s ease;
+  cursor: pointer;
+}
+.word-item:active {
+  transform: scale(0.98);
 }
 .word-item:hover {
   transform: translateY(-3px);
