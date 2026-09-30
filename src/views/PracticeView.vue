@@ -23,7 +23,7 @@ const theme = {
 }
 const t = computed(() => theme[category.value?.color] || theme.pink)
 
-let queue = []
+const queue = ref([])
 const currentIndex = ref(0)
 const userInput = ref('')
 const status = ref('idle') // idle | correct | wrong
@@ -44,7 +44,7 @@ function shuffle(arr) {
 function buildQueue() {
   // 优先抽取未掌握的单词，全部掌握则打乱全部
   const unlearned = allWords.value.filter((w) => !store.progress[id.value]?.[w.word]?.learned)
-  queue = shuffle(unlearned.length ? unlearned : allWords.value)
+  queue.value = shuffle(unlearned.length ? unlearned : allWords.value)
   currentIndex.value = 0
   userInput.value = ''
   status.value = 'idle'
@@ -54,7 +54,7 @@ function buildQueue() {
   showHint.value = false
 }
 
-const current = computed(() => queue[currentIndex.value] || null)
+const current = computed(() => queue.value[currentIndex.value] || null)
 
 const blankParts = computed(() => {
   if (!current.value) return []
@@ -100,7 +100,7 @@ function skip() {
 }
 
 function next() {
-  if (currentIndex.value + 1 >= queue.length) {
+  if (currentIndex.value + 1 >= queue.value.length) {
     finished.value = true
     return
   }
@@ -119,11 +119,11 @@ function switchMode() {
 }
 
 const percent = computed(() =>
-  queue.length ? Math.round(((currentIndex.value + (status.value !== 'idle' ? 1 : 0)) / queue.length) * 100) : 0
+  queue.value.length ? Math.round(((currentIndex.value + (status.value !== 'idle' ? 1 : 0)) / queue.value.length) * 100) : 0
 )
 
 const resultMsg = computed(() => {
-  const p = queue.length ? correctCount.value / queue.length : 0
+  const p = queue.value.length ? correctCount.value / queue.value.length : 0
   if (p === 1) return '完美通关！你就是单词小天才 🌟'
   if (p >= 0.8) return '超棒！只差一点点就全对啦 🍰'
   if (p >= 0.5) return '不错哦，继续加油会变更强 💪'

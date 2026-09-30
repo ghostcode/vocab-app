@@ -24,7 +24,7 @@ const theme = {
 const t = computed(() => theme[category.value?.color] || theme.pink)
 
 // 学习顺序：未掌握的优先，全部掌握则打乱全部
-let queue = []
+const queue = ref([])
 const currentIndex = ref(0)
 const flipped = ref(false)
 const finished = ref(false)
@@ -47,15 +47,15 @@ function buildQueue(focus = false) {
     const fw = allWords.value.find((w) => w.word === focusWord.value)
     base = [fw, ...base.filter((w) => w.word !== focusWord.value)]
   }
-  queue = base
+  queue.value = base
   currentIndex.value = 0
   flipped.value = false
   finished.value = false
   knownCount.value = 0
 }
 
-const current = computed(() => queue[currentIndex.value] || null)
-const total = computed(() => queue.length)
+const current = computed(() => queue.value[currentIndex.value] || null)
+const total = computed(() => queue.value.length)
 const percent = computed(() =>
   total.value ? Math.round(((currentIndex.value + (finished.value ? 1 : 0)) / total.value) * 100) : 0
 )
